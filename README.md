@@ -45,30 +45,6 @@ This will start the Streamlit development server, and you can access the applica
 ## Model Information
 The models used in this application are provided in zip format due to their large size. You need to unzip them before using them.
 
-Instructions for Extracting the Models
-To extract the models, you can follow these steps:
-
-Download the zip file containing the models from [insert the download link here].
-
-Use Python and the zipfile library to extract the models to the destination directory of your choice. You can use the following code:
-
-import zipfile
-import os
-
-# Set the path to the zip file
-zip_file_path = 'path_to_the_file.zip'
-
-# Set the destination directory for extracting the files
-extracted_folder_path = 'destination_directory_path'
-
-# Create the destination directory if it doesn't exist
-os.makedirs(extracted_folder_path, exist_ok=True)
-
-# Extract the contents of the zip file
-with zipfile.ZipFile(zip_file_path, 'r') as zip_ref:
-    zip_ref.extractall(extracted_folder_path)
-Make sure to follow the above steps to have the models ready for use in the application.
-
 ## Built With
 
 - Python
