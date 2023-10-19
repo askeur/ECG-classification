@@ -13,14 +13,14 @@ This Streamlit application is designed to classify heart rhythms in ECG (Electro
 ### Prerequisites
 
 Before running the application, make sure you have the required Python packages installed. You can install them using `pip`:
-pip install streamlit
-pip install pandas
-pip install seaborn
-pip install wfdb
-pip install numpy
-pip install scikit-learn
-pip install tensorflow
-pip install matplotlib
+- pip install streamlit
+- pip install pandas
+- pip install seaborn
+- pip install wfdb
+- pip install numpy
+- pip install scikit-learn
+- pip install tensorflow
+- pip install matplotlib
 
 
 
