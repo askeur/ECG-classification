@@ -1,6 +1,6 @@
 # ECG-classification
 
-![Heartbeat Gif](https://github.com/askeur/ECG-classification)
+(https://github.com/askeur/ECG-classification)
 
 This Streamlit application is designed to classify heart rhythms in ECG (Electrocardiogram) signals. It provides the following features:
 
