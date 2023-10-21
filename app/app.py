@@ -23,6 +23,7 @@ from tensorflow.keras.models import load_model
 from sklearn.metrics import classification_report
 import joblib
 import matplotlib.pyplot as plt
+from sklearn.metrics import roc_auc_score, roc_curve, f1_score, accuracy_score , accuracy_score
 
 
 
@@ -252,48 +253,55 @@ def load_data(train_csv_data, test_csv_data):
 @st.cache_data
 def visualisation(train_csv_data, test_csv_data):
     if train_csv_data is not None and test_csv_data is not None:
+        # Titre principal
+        st.markdown("<h1 style='text-align: center; font-size: 36px;'>ECG Data Visualization</h1>",
+                    unsafe_allow_html=True)
 
+
+        # Charger les données
         loaded_data = load_data(train_csv_data, test_csv_data)
 
         if not loaded_data[0].empty and not loaded_data[1].empty:
             train_data, test_data = loaded_data
 
-        col1, col2 = st.columns(2)
+            # Diviser l'écran en deux colonnes
+            col1, col2 = st.columns(2)
 
-        with col1:
-            st.markdown('<font color="#dbdada"><h4> Visualize ECG - Training Data</h4></font>',
-                        unsafe_allow_html=True)
+            # Colonne 1
+            with col1:
+                # En-tête de section
+                st.markdown('<h4>Training Data</h4>', unsafe_allow_html=True)
 
-            if train_data is not None:
-                st.write(train_data)
-            st.markdown('<font color="#dbdada"><h4>Descriptive Statistics - Training Data</h4></font>',
-                        unsafe_allow_html=True)
-            st.write(display_descriptive_statistics(train_data, "Training Data"))
-
-            st.markdown('<font color="#dbdada"><h4>ECG Signals - Training Data</h4></font>', unsafe_allow_html=True)
-            ecg_signals_fig_train = plot_ecg_signals(train_data, "ECG signals - Training Data")
-            st.pyplot(ecg_signals_fig_train)
-
-            st.markdown('<font color="#dbdada"><h4>Class Distribution - Training Data</h4></font>',
-                        unsafe_allow_html=True)
-            plot_class_distribution(train_data, "Class Distribution - Training Data")
-
-        with col2:
-            st.markdown('<font color="#dbdada"><h4> Visualize ECG - Test Data</h4></font>', unsafe_allow_html=True)
-            if train_data is not None:
+                # Visualiser les données
                 st.write(train_data)
 
-            st.markdown('<font color="#dbdada"><h4>Descriptive Statistics - Test Data</h4></font>',
-                        unsafe_allow_html=True)
-            st.write(display_descriptive_statistics(test_data, "Test Data"))
+                # Visualiser les signaux ECG
+                st.markdown('<h4>ECG signals - Training Data</h4>', unsafe_allow_html=True)
+                ecg_signals_fig_train = plot_ecg_signals(train_data, "ECG signals - Training Data")
+                st.pyplot(ecg_signals_fig_train)
 
-            st.markdown('<font color="#dbdada"><h4>ECG Signals - Test Data</h4></font>', unsafe_allow_html=True)
-            ecg_signals_fig_test = plot_ecg_signals(test_data, "ECG signals - Test Data")
-            st.pyplot(ecg_signals_fig_test)
+                st.markdown('<h4>Class Distribution - Training Data</h4>', unsafe_allow_html=True)
+                plot_class_distribution(train_data, "Class Distribution - Training Data")
 
-            st.markdown('<font color="#dbdada"><h4>Class Distribution - Test Data</h4></font>',
-                        unsafe_allow_html=True)
-            plot_class_distribution(test_data, "Class Distribution - Test Data")
+                # Colonne 2
+                with col2:
+                    # En-tête de section
+                    st.markdown('<h4>Test Data</h4>', unsafe_allow_html=True)
+
+                    # Visualiser les données
+                    st.write(test_data)
+
+                    # Visualiser les signaux ECG
+                    st.markdown('<h4>ECG signals - Test Data</h4>', unsafe_allow_html=True)
+                    ecg_signals_fig_test = plot_ecg_signals(test_data, "ECG signals - Test Data")
+                    st.pyplot(ecg_signals_fig_test)
+
+                    st.markdown('<h4>Class Distribution - Test Data</h4>', unsafe_allow_html=True)
+                    #st.markdown('<font color="#dbdada"><h4>Class Distribution - Test Data</h4></font>',
+                                #unsafe_allow_html=True)
+                    plot_class_distribution(test_data, "Class Distribution - Test Data")
+
+
 
 
 def main():
@@ -369,98 +377,130 @@ if train_csv_data  is not None and test_csv_data is not None:
 
     # Afficher la page correspondante en fonction des cases cochées
     if visualization_checkbox:
+
         visualisation(train_csv_data,test_csv_data, )
 
-    # Appel de la fonction
     if classification_checkbox:
         try:
-            st.info(f"Prédiction du fichier avec le modèle {modele_selected} basé sur la base de données {bd_selected}")
-            model, train_data, test_data = classification(train_csv_data,test_csv_data, bd_selected, modele_selected)
+            st.markdown("<h1 style='text-align: center; font-size: 36px;'>ECG Data Prediction</h1>",
+                        unsafe_allow_html=True)
+            st.markdown(
+                f"<h4 style='text-align: center;'>Using {modele_selected} model based on {bd_selected} database</h4>",
+                unsafe_allow_html=True)
 
+            # Charger les données
+            model, train_data, test_data = classification(train_csv_data, test_csv_data, bd_selected, modele_selected)
+
+            # Section de la colonne 1
             col1, col2 = st.columns(2)
 
             with col1:
-                with st.spinner(text="Exécution du modèle..."):
+
+                st.markdown('<h4>Training Data</h4>', unsafe_allow_html=True)
+                st.write(train_data)
+
+
+                st.markdown('<h4>Model Performance</h4>', unsafe_allow_html=True)
+                if model is not None:
                     y_train = train_data.iloc[:, -1].values
                     y_test = test_data.iloc[:, -1].values
 
                     # Extraire les caractéristiques des données
                     X_train = train_data.iloc[:, :-1].values.reshape((len(train_data), 1, -1))
                     X_test = test_data.iloc[:, :-1].values.reshape((len(test_data), 1, -1))
-                    X_notre_train_flat = X_train.reshape((len(X_train), -1))
-                    X_notre_test_flat = X_test.reshape((len(X_test), -1))
+                    X_train_flat = X_train.reshape((len(X_train), -1))
+                    X_test_flat = X_test.reshape((len(X_test), -1))
 
                     # Réorganiser les données d'entraînement pour que chaque ligne soit un enregistrement et chaque colonne une variable
 
                     X_train = np.array([x.flatten() for x in X_train])
                     X_test = np.array([x.flatten() for x in X_test])
 
-                    # prédire sur les données selon le model choisi model
+                    y_pred = model.predict(X_test)
 
-                    if model is not None:
-                        y_pred = model.predict(X_test)
-                        unique_classes = np.unique(y_test)  # Obtenez les classes uniques à partir des données réelles
-                        target_names = [f"Classe {i}" for i in unique_classes]  # Créez les noms de classe dynamiquement
+                    unique_classes = np.unique(y_test)
+                    target_names = [f"Classe {i}" for i in unique_classes]
 
-                        report = classification_report(y_test, y_pred, labels=unique_classes, target_names=target_names,
-                                                       zero_division=0)
-
-                        st.subheader("Rapport de Classification")
-                        st.text_area(label="Rapport", value=report, height=350)
+                    report = classification_report(y_test, y_pred, labels=unique_classes, target_names=target_names,
+                                                   zero_division=0)
+                    Accuracy_train = round(model.score(X_train_flat, y_train) * 100, 2)
+                    model_accuracy = round(accuracy_score(y_pred, y_test) * 100, 2)
 
 
 
-                        st.subheader("Analyse des erreurs")
-                        if model is not None:
-                            y_pred = model.predict(X_test)
-                            cm = confusion_matrix(y_test, y_pred)
-                            fig, ax = plt.subplots(figsize=(10, 6))
-                            sns.heatmap(cm, annot=True, fmt='d', cmap='Blues',
-                                        xticklabels=["Classe 0", "Classe 1", "Classe 2", "Classe 3", "Classe 4"],
-                                        yticklabels=["Classe 0", "Classe 1", "Classe 2", "Classe 3", "Classe 4"])
-                            plt.xlabel('Prédictions')
-                            plt.ylabel('Vraies étiquettes')
-                            plt.title('Matrice de Confusion')
-                            st.pyplot(fig)
-                            st.set_option('deprecation.showPyplotGlobalUse', False)
-                            false_positives = cm.sum(axis=0) - np.diag(cm)
-                            false_negatives = cm.sum(axis=1) - np.diag(cm)
-                            st.subheader("Erreurs de Prédiction")
-                            st.write(f"Faux Positifs par Classe : {false_positives}")
-                            st.write(f"Faux Négatifs par Classe : {false_negatives}")
-                        else:
-                            st.error("Le modèle n'a pas été correctement chargé.")
 
-                    else:
-                        st.error("Le modèle n'a pas été correctement chargé.")
+                    st.text_area(label="Report", value=report, height=350)
+
+                    st.subheader("Classification Report")
+                    st.write(f"Training Accuracy: {Accuracy_train}%")
+                    st.write(f"Model Accuracy Score: {model_accuracy}%")
+                    # Ajouter d'autres visualisations ou métriques de performance si nécessaire
+
+                else:
+                    st.error("Le modèle n'a pas été correctement chargé.")
 
             with col2:
-                st.subheader("Visualisation des prédictions")
+
+
                 if model is not None:
+                    st.markdown('<h4>Visualisation des Prédictions</h4>', unsafe_allow_html=True)
                     predictions_df = pd.DataFrame({'Vraie Classe': y_test, 'Classe Prédite': y_pred})
                     st.bar_chart(predictions_df['Classe Prédite'].value_counts())
+                    st.markdown("---")
+
+
+                    st.markdown('<h4>Confusion Matrix</h4>', unsafe_allow_html=True)
+                    y_pred = model.predict(X_test)
+                    cm = confusion_matrix(y_test, y_pred)
+
+                    fig, ax = plt.subplots(figsize=(10, 6))
+                    sns.heatmap(cm, annot=True, fmt='d', cmap='Blues',
+                                xticklabels=["Classe 0", "Classe 1", "Classe 2", "Classe 3", "Classe 4"],
+                                yticklabels=["Classe 0", "Classe 1", "Classe 2", "Classe 3", "Classe 4"])
+                    plt.xlabel('Prédictions')
+                    plt.ylabel('Vraies étiquettes')
+                    plt.title('Matrice de Confusion')
+                    st.pyplot(fig)
+                    st.set_option('deprecation.showPyplotGlobalUse', False)
+
 
                 else:
                     st.error("Le modèle n'a pas été correctement chargé.")
 
-                st.subheader("Résumé des prédictions")
+            st.markdown("---")
 
+            # Section de la colonne 3
+            col5, col6 = st.columns(2)
+
+            with col5:
+
+                st.markdown('<h4>False Positives & False Negatives</h4>', unsafe_allow_html=True)
                 if model is not None:
                     y_pred = model.predict(X_test)
-                    summary_df = pd.DataFrame({'Vraies étiquettes': y_test, 'Prédictions': y_pred})
-                    st.text_area(label="Vraies étiquettes/Prédictions", value=summary_df.to_string(), height=480)
+                    cm = confusion_matrix(y_test, y_pred)
+
+                    false_positives = cm.sum(axis=0) - np.diag(cm)
+                    false_negatives = cm.sum(axis=1) - np.diag(cm)
+
+                    st.write(f"Faux Positifs par Classe : {false_positives}")
+                    st.write(f"Faux Négatifs par Classe : {false_negatives}")
 
                 else:
                     st.error("Le modèle n'a pas été correctement chargé.")
+
+
+
+
 
         except Exception as e:
             st.error(f"Une erreur s'est produite : {e}")
+
 # PAge Intro
 # Contenu de la page d'accueil
 if show_intro:
     st.markdown(PAgeIntro, unsafe_allow_html=True)
     st.markdown(authors, unsafe_allow_html=True)
-    st.image('app/img/model_learing.gif')
+    st.image('app/img/ML.gif')
 
 
 
