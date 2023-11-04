@@ -28,7 +28,7 @@ Before running the application, make sure you have the required Python packages 
 
 To run the ECG Classification Application, open your terminal and navigate to the application's directory. Then, run the following command:
 
-streamlit run app/mains.py  
+streamlit run app/app.py 
 
 
 This will start the Streamlit development server, and you can access the application in your web browser.
@@ -36,7 +36,7 @@ This will start the Streamlit development server, and you can access the applica
 ## Usage
 
 1. Upload ECG files in the .atr, .hea, and .dat formats -- > csv_train, csv_test
-2. Choose a contect ( MIT, PTB) and a classification model (WaveNet, SVM, KNN, LogisticRegression).
+2. Choose a contect ( Training MIH, Training PTB) and a classification model (WaveNet, SVM, KNN, LogisticRegression).
 3. Perform preprocessing on the uploaded files.
 4. Visualize ECG signals, class distributions, and descriptive statistics.
 5. Perform ECG signal classification.
