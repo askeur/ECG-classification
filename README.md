@@ -2,6 +2,7 @@
 
 (https://github.com/askeur/ECG-classification)
 
+
 This Streamlit application is designed to classify heart rhythms in ECG (Electrocardiogram) signals. It provides the following features:
 
 - Uploading and preprocessing ECG files in the .atr, .hea, and .dat formats.
@@ -67,5 +68,19 @@ The models used in this application are provided in zip format due to their larg
 
 For more information, please refer to the [GitHub repository](https://github.com/askeur/ECG-classification).
 
+## Data
 
+This dataset combines two collections of cardiac signals: the MIT-BIH Arrhythmia Dataset and The PTB Diagnostic ECG Database. The number of samples from these two collections is significant, allowing for training deep neural networks.
+
+These signals have undergone certain transformations and have been segmented for study. Each signal segment corresponds to a heart beat.
+Link to Dataset
+
+## Benchmark
+Preprocessing, Deep Learning Architectures, Transfer Learning
+
+## References
+
+Simplified Understanding of Artificial Neural Networks with 1-D ECG Biomedical Data
+ECG Research by DataSci
+You can add this information to your README to provide details about the dataset and references used in your project.
 
