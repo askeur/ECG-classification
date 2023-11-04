@@ -1,8 +1,8 @@
 from matplotlib import pyplot as plt
 import numpy as np
 from matplotlib.ticker import (AutoMinorLocator, MultipleLocator)
+import matplotlib.pyplot as plt
 import seaborn as sns
-import streamlit as st
 
 def plot_ecg(uploaded_ecg, FS):
     '''
@@ -119,6 +119,24 @@ def plot_class_distribution(df, title):
         ax[0].annotate(f'{count}', (i, count), ha='center', va='bottom')
 
     st.pyplot(fig)
+
+def plot_ptbdb_class_distribution(df, title):
+    class_legend = {
+        'Normal': 'Normal Beats',
+        'Abnormal': 'Abnormal Beats'
+    }
+    plt.figure(figsize=(8, 4))
+    sns.countplot(x=df.iloc[:, -1])
+    plt.title(title)
+    plt.xlabel('Classes')
+    plt.ylabel('Nombre de battements')
+    plt.legend(class_legend.values(), title='Classes')
+    st.pyplot(plt)
+
+# Example usage:
+
+
+
 
 
 # Fonction pour afficher les statistiques descriptives

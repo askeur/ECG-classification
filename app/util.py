@@ -4,23 +4,79 @@ import streamlit as st
 from PIL import ImageOps, Image
 import numpy as np
 
-PAgeIntro  =""" # Classification des Battements Cardiaques
-
-Dans le domaine médical, l'interprétation manuelle des enregistrements d'activité électrique cardiaque (ECG) peut être une tâche laborieuse et sujette à des erreurs. Pour relever ce défi, notre projet s'est concentré sur la classification automatisée des rythmes cardiaques dans les signaux ECG. Nous avons exploré deux approches principales : les méthodes traditionnelles de machine learning et l'utilisation de l'architecture WaveNet.
-
-Nous avons évalué nos modèles sur deux bases de données distinctes : notre propre collection interne d'ECG et une base de données Kaggle basée sur les ensembles de données MIT-BIH et PTB Diagnostic ECG. Les objectifs du projet étaient multiples :
-
-- Développer des modèles de classification précis pour identifier les rythmes cardiaques dans les ECG, en utilisant à la fois des techniques de machine learning classiques et l'architecture WaveNet.
-- Évaluer la capacité de ces modèles à généraliser à partir de sources de données variées en les testant sur les deux bases de données.
-- Analyser en profondeur les performances obtenues, en évaluant leur pertinence clinique et en examinant les implications potentielles pour l'adoption de ces techniques dans le domaine médical.
-
-Notre projet met en lumière la valeur ajoutée de l'architecture WaveNet dans la classification des rythmes cardiaques tout en soulignant le potentiel des techniques de machine learning pour l'analyse automatisée des ECG. Une classification précise des rythmes cardiaques est essentielle pour des diagnostics plus justes, améliorant ainsi les soins aux patients et la prévention des complications cardiaques.
+PAgeIntro = """
+<h1>Heartbeat Classification</h1>
+<p>In the medical field, manual interpretation of electrocardiogram (ECG) recordings can be a labor-intensive and error-prone task. To address this challenge, our project focused on the automated classification of cardiac rhythms in ECG signals. We explored two primary approaches: traditional machine learning methods and the use of the WaveNet architecture.</p>
+<h2>Objectives</h2>
+<ul>
+  <li>Develop accurate classification models to identify cardiac rhythms in ECGs, using both classical machine learning techniques and the WaveNet architecture.</li>
+  <li>Assess the ability of these models to generalize from diverse data sources by testing them on both databases.</li>
+  <li>Conduct a detailed analysis of the achieved performances, evaluating their clinical relevance and examining potential implications for the adoption of these techniques in the medical field.</li>
+</ul>
+<p>Our project highlights the added value of the WaveNet architecture in cardiac rhythm classification while emphasizing the potential of machine learning techniques for automated ECG analysis. Accurate classification of cardiac rhythms is crucial for more precise diagnoses, thereby improving patient care and preventing cardiac complications.</p>
 """
 authors  =""" 
-**Auteurs :**
-- Nabila ASKEUR, Abdelkader DEBBAGHI, Hocine DRIOUECHE,Miryam KUETE
+**Authors :**
+    [Nabila ASKEUR](https://www.linkedin.com/in/nabila-askeur-b120334a/) , Myriam KUTES DONGMO , [Abdelkader DEBBAGHI](https://www.linkedin.com/in/debbaghi-abdelkader-84840810/) , [Hocine DRIOUECHE](https://www.linkedin.com/in/hocine-drioueche-93b65b27/)
 """
 
+PAgeMl = """
+<ul>
+  <h3>The Modeling Architecture</h3>
+  <p>For the Kaggle PTB MIH ECG dataset, we employed a machine learning approach to diagnose cardiac arrhythmias.</p>
+</ul>
+
+<ul>
+  <h4>Splitting the Dataset</h4>
+  <p>We divided the dataset into training (80%) and testing (20%) sets to assess the model's effectiveness.</p>
+</ul>
+
+<ul>
+  <li><h4>Feature Selection</h4></li>
+  <p>Segmentation was performed to remove spikes and noise, reducing the dimensionality of the dataset while preserving vital information.</p>
+</ul>
+
+
+
+ <h3>Models in General</h3>
+<p>We employed several models to classify the ECG data, each with its unique strengths:</p>
+<ul>
+  <li>
+    <h4>SVM (Support Vector Machine)</h4>
+    <p>A linear SVM model was used to separate classes within the dataset, with fine-tuned C and gamma hyperparameters for optimal performance.</p>
+  </li>
+  <li>
+    <h4>KNN (K-Nearest Neighbors)</h4>
+    <p>The K-nearest neighbors algorithm found the k nearest neighbors of each data point, starting with k=5 and adapting for better performance.</p>
+  </li>
+  <li>
+    <h4>WaveNet</h4>
+    <p>We employed the WaveNet architecture, a neural network designed for signal processing, and trained it on the ECG data. We evaluated its performance by comparing results with actual labels.</p>
+  </li>
+  <li>
+    <h4>LogisticRegression</h4>
+    <p>Logistic regression was employed as a classification model, providing valuable insights into the dataset's patterns and relationships.</p>
+  </li>
+</ul>
+
+
+<h3>Model Evaluation</h3>
+<ul>
+  <li><h4>Cross-Validation</h4></li>
+  <p>To assess model performance, we applied cross-validation by dividing the data into 10 subsets, training and testing each model on every subset, providing insights into generalization capabilities.</p>
+
+  <li><h4>Model Performance</h4></li>
+  <p>We assessed model performance using essential metrics, including precision, recall, and the F1 score.</p>
+
+  <li><h4>Accuracy</h4></li>
+  <p>We measured accuracy as the number of correct predictions compared to the total number of predictions.</p>
+</ul>
+
+  <li><h4>Results</h4></li>
+  <p>We presented the results of each approach in a table, emphasizing precision, recall, and the F1 score. Notably, the KNN and WaveNet models achieved the best performance on this dataset.</p>
+</ul>
+
+"""
 def set_background(image_file):
     """
     This function sets the background of a Streamlit app to an image specified by the given image file.

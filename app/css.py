@@ -3,11 +3,17 @@ hide_streamlit_style = """
     <style>
         #MainMenu {visibility: hidden;}
          [data-testid=stSidebar] {
-          background-color: #c9621e;
-
-
- 
+          background-color: #c9621e;     
+          /* Changer la couleur de fond des boutons */
+       
        }
+       div.stButton > button:first-child {
+              background-color:  black;
+              color:white;
+              height:2em;
+              width:18em;
+              border-radius:18px 18px 18px 18px;
+        }
         footer {visibility: hidden;}
         /* Changer la couleur de fond */
         body {
@@ -56,6 +62,7 @@ hide_streamlit_style = """
             padding: 5px;
             top: 2px;
         }
+      
     </style>
  
 """
