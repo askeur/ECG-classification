@@ -36,7 +36,7 @@ This will start the Streamlit development server, and you can access the applica
 ## Usage
 
 1. Upload ECG files in the .atr, .hea, and .dat formats -- > csv_train, csv_test
-2. Choose a database (Kaggle, MIT, PTB) and a classification model (WaveNet, RandomForest, SVM, KNN, LogisticRegression).
+2. Choose a contect ( MIT, PTB) and a classification model (WaveNet, SVM, KNN, LogisticRegression).
 3. Perform preprocessing on the uploaded files.
 4. Visualize ECG signals, class distributions, and descriptive statistics.
 5. Perform ECG signal classification.
@@ -56,11 +56,8 @@ The models used in this application are provided in zip format due to their larg
 
 ## Authors
 
- Nabila ASKEUR, Abdelkader DEBBAGHI, Hocine DRIOUECHE,Miryam KUETE
+[Nabila ASKEUR](https://www.linkedin.com/in/nabila-askeur-b120334a/) , Myriam KUTES DONGMO , [Abdelkader DEBBAGHI](https://www.linkedin.com/in/debbaghi-abdelkader-84840810/) , [Hocine DRIOUECHE](https://www.linkedin.com/in/hocine-drioueche-93b65b27/)
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
 
 ## Acknowledgments
 
