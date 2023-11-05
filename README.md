@@ -57,7 +57,7 @@ The models used in this application are provided in zip format due to their larg
 
 ## Authors
 
-[Nabila ASKEUR](https://www.linkedin.com/in/nabila-askeur-b120334a/) , Myriam KUTES DONGMO , [Abdelkader DEBBAGHI](https://www.linkedin.com/in/debbaghi-abdelkader-84840810/) , [Hocine DRIOUECHE](https://www.linkedin.com/in/hocine-drioueche-93b65b27/)
+[Nabila ASKEUR](https://www.linkedin.com/in/nabila-askeur-b120334a/) , KUETE DONGMO Miryam , [Abdelkader DEBBAGHI](https://www.linkedin.com/in/debbaghi-abdelkader-84840810/) , [Hocine DRIOUECHE](https://www.linkedin.com/in/hocine-drioueche-93b65b27/)
 
 
 ## Acknowledgments

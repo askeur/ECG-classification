@@ -6,18 +6,18 @@ import numpy as np
 
 PAgeIntro = """
 <h1>Heartbeat Classification</h1>
-<p>In the medical field, manual interpretation of electrocardiogram (ECG) recordings can be a labor-intensive and error-prone task. To address this challenge, our project focused on the automated classification of cardiac rhythms in ECG signals. We explored two primary approaches: traditional machine learning methods and the use of the WaveNet architecture.</p>
+<p>In the medical field, manual interpretation of electrocardiogram (ECG) recordings can be a labor-intensive and error-prone task. To address this challenge, our project colab focused on the automated classification of cardiac rhythms in ECG signals. We explored two primary approaches: traditional machine learning methods and the use of the WaveNet architecture.</p>
 <h2>Objectives</h2>
 <ul>
   <li>Develop accurate classification models to identify cardiac rhythms in ECGs, using both classical machine learning techniques and the WaveNet architecture.</li>
   <li>Assess the ability of these models to generalize from diverse data sources by testing them on both databases.</li>
   <li>Conduct a detailed analysis of the achieved performances, evaluating their clinical relevance and examining potential implications for the adoption of these techniques in the medical field.</li>
 </ul>
-<p>Our project highlights the added value of the WaveNet architecture in cardiac rhythm classification while emphasizing the potential of machine learning techniques for automated ECG analysis. Accurate classification of cardiac rhythms is crucial for more precise diagnoses, thereby improving patient care and preventing cardiac complications.</p>
+<p>Our project colab highlights the added value of the WaveNet architecture in cardiac rhythm classification while emphasizing the potential of machine learning techniques for automated ECG analysis. Accurate classification of cardiac rhythms is crucial for more precise diagnoses, thereby improving patient care and preventing cardiac complications.</p>
 """
 authors  =""" 
 **Authors :**
-    [Nabila ASKEUR](https://www.linkedin.com/in/nabila-askeur-b120334a/) , Myriam KUTES DONGMO , [Abdelkader DEBBAGHI](https://www.linkedin.com/in/debbaghi-abdelkader-84840810/) , [Hocine DRIOUECHE](https://www.linkedin.com/in/hocine-drioueche-93b65b27/)
+    [Nabila ASKEUR](https://www.linkedin.com/in/nabila-askeur-b120334a/) , KUETE DONGMO Miryam , [Abdelkader DEBBAGHI](https://www.linkedin.com/in/debbaghi-abdelkader-84840810/) , [Hocine DRIOUECHE](https://www.linkedin.com/in/hocine-drioueche-93b65b27/)
 """
 
 PAgeMl = """
